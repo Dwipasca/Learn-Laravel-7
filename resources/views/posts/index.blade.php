@@ -9,11 +9,16 @@
             <div>
                 <h4>All Post</h4>
                 <hr>
-            </div>    
+            </div> 
             <div>
                 <a href="/posts/create" class="btn btn-primary">Add Post </a>
             </div>    
-        </div>        
+        </div>    
+        @if (session()->has('success'))  
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>      
+        @endif 
             <div class="row">
                 
                 @forelse ($posts as $post)
@@ -32,9 +37,10 @@
                                 <a href="/posts/{{ $post->slug }}">Read More</a>
                                 
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer d-flex justify-content-between">
                                 {{-- Publish On {{ $post->created_at->format('d M, Y')}} --}}
                                 Publish On {{ $post->created_at->diffForHumans()}}
+                                <a href="/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success">Edit</a>
                             </div>
                         </div>
                     </div>

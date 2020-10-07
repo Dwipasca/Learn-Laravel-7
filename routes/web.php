@@ -24,9 +24,15 @@ Route::get('/contact', function () {
 });
 
 Route::get('posts', 'PostController@index');
+
 Route::get('posts/create', 'PostController@create');
 Route::post('posts/store', 'PostController@store');
-Route::get('posts/{slug}', 'PostController@show');
+
+Route::get('posts/{post:slug}/edit', 'PostController@edit');
+Route::patch('posts/{post:slug}/edit', 'PostController@update');
+
+Route::get('posts/{post:slug}', 'PostController@show');
+
 
 // route wild card atau biasa disebut route yang ada parameternya
 // Route::get('posts/{slug}', 'PostController@show');
